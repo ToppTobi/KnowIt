@@ -27,57 +27,45 @@ constructor(@Inject(SupabaseService) private supabaseService: SupabaseService) {
     const file = event.target.files[0];
     const filePath = `learn-sets/${file.name}`;
 
-    // Datei hochladen
-    const { data: uploadData, error: uploadError } = await this.supabaseService.getClient()
-      .storage.from('images')
+
+    const checkResult = await this.supabaseService.getClient()
+      .storage
+      .from('images')
+      .list('learn-sets', { search: file.name });
+
+    if (checkResult.data && checkResult.data.length > 0) {
+      const { data: publicData } = this.supabaseService.getClient()
+        .storage
+        .from('images')
+        .getPublicUrl(filePath);
+
+      this.imageUrl = publicData?.publicUrl || '';
+      console.log('Using existing file URL:', this.imageUrl);
+      return;
+    }
+
+
+    const { data, error } = await this.supabaseService.getClient()
+      .storage
+      .from('images')
       .upload(filePath, file);
 
-    if (uploadError) {
-      console.error('Fehler beim Hochladen des Bildes:', uploadError.message);
+    if (error) {
+      console.error('Upload error:', error);
       return;
     }
 
-    // Öffentliche URL abrufen
-    const publicUrl = this.supabaseService.getClient()
-      .storage.from('images')
-      .getPublicUrl(filePath).data.publicUrl;
 
-    if (!publicUrl) {
-      console.error('Fehler: Öffentliche URL konnte nicht abgerufen werden');
-      return;
-    }
+    const { data: publicData } = this.supabaseService.getClient()
+      .storage
+      .from('images')
+      .getPublicUrl(filePath);
 
-    // Speichern der öffentlichen URL
-    this.imageUrl = publicUrl;
-    console.log('Öffentliche URL:', this.imageUrl);
+    this.imageUrl = publicData?.publicUrl || '';
+    console.log('Uploaded new file and set URL:', this.imageUrl);
   }
 
 
-  async uploadAudio(event: any, index: number) {
-    const file = event.target.files[0];
-    const { data, error } = await this.supabaseService.getClient()
-      .storage.from('audio')
-      .upload(`flashcards/${file.name}`, file);
-
-    if (error) {
-      console.error('Error uploading audio:', error);
-    } else {
-      this.flashcards[index].audio = data.path;
-    }
-  }
-
-  async uploadAnswerImage(event: any, index: number) {
-    const file = event.target.files[0];
-    const { data, error } = await this.supabaseService.getClient()
-      .storage.from('images')
-      .upload(`flashcards/${file.name}`, file);
-
-    if (error) {
-      console.error('Error uploading answer image:', error);
-    } else {
-      this.flashcards[index].answerImage = data.path;
-    }
-  }
 
   addFlashcard() {
     this.flashcards.push({ question: '', answer: '', answerImage: '', audio: '' });

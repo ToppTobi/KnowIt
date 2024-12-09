@@ -1,24 +1,120 @@
-.title {
-  color: black;
-}
-
-.title-container {
-  display: flex;
-  justify-content: space-between; /* Platz zwischen Titel und Icon */
-  align-items: center; /* Vertikale Ausrichtung */
-  padding: 0 16px; /* Abstand links und rechts */
-}
-
-.title-text {
-  display: flex;
-  font-size: 20px; /* Schriftgröße des Titels */
+ion-toolbar {
+  --background: #fff;
+  --color: #000;
   font-weight: bold;
 }
 
-.title-icon {
+
+.content-container {
+  margin: 15px; /* Links und rechts Margin von 15px */
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: black;
+}
+
+
+
+.input{
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #B8CDD6;
+  opacity: 0.75;
+  margin-bottom: 16px;
+  text-align: left;
+  vertical-align: top;
+  resize: none;
+  height: 50px;
+  border: none;
+}
+
+
+
+.textarea {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 2;
+  text-align: left;
+  vertical-align: top;
+  resize: none;
+  background-color: #B8CDD6;
+  opacity: 0.75;
+  border:none;
+
+}
+
+
+
+.image-preview-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-text {
+  color: #777;
+  font-size: 16px;
+  text-align: center;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.flashcard {
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: rgba(184, 205, 214, 0.51);
+}
+
+.card-header {
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+
+
+.top-button-container {
   display: flex;
   justify-content: flex-end;
-  margin-left: auto;
-  font-size: 24px;
-  color: black;
+  padding: 10px 15px;
+}
+
+
+.bottom-button-container {
+  margin: 15px;
 }
