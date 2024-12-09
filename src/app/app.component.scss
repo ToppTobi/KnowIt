@@ -1,0 +1,57 @@
+ion-menu {
+  --background: rgba(0.001, 0.001, 0.001, 0.001); /* Halbtransparenter schwarzer Hintergrund */
+  color: black;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border-radius: 0px 15px 15px 0px;
+}
+
+
+
+.sidebar {
+  height: 100%;
+  color: black;
+  border-radius: 15px; /* Abgerundete Ecken unten */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Elemente beginnen oben */
+  backdrop-filter: blur(1px);
+}
+
+.sidebar-header {
+  backdrop-filter: blur(1px);
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 900 !important; /* Light für Header */
+  text-align: left;
+}
+
+.menu-content {
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 2px;
+  align-items: flex-start;
+}
+
+.menu-item {
+  display: flex;
+  padding: 8px 8px;
+  border-radius: 8px;
+  color: black !important;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important; /* Medium für Navigationslinks */
+  transition: background-color 0.3s ease;
+
+  .icons {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Leichte Hover-Farbe */
+  }
+}

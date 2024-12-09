@@ -1,0 +1,26 @@
+<ion-menu side="start" content-id="main-content">
+  <div class="sidebar">
+    <!-- Header -->
+    <div class="sidebar-header">
+      <h2>Navigation</h2>
+    </div>
+
+    <!-- Menüeinträge -->
+    <div class="menu-content">
+      <div class="menu-item" routerLink="/learn-sets" routerDirection="root">
+        <img class="icons" src="assets/icon/home.png" alt="Custom Icon" width="24" height="24"/>
+        <span>LearnSets</span>
+      </div>
+      <div class="menu-item" routerLink="/create-learn-set" routerDirection="root">
+        <img class="icons" src="assets/icon/add.png" alt="Custom Icon" width="24" height="24"/>
+        <span>Create Set</span>
+      </div>
+      <div class="menu-item" routerLink="/user" routerDirection="root">
+        <img class="icons" src="assets/icon/user.png" alt="Custom Icon" width="24" height="24"/>
+        <span>User</span>
+      </div>
+    </div>
+  </div>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>

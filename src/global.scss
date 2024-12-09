@@ -1,0 +1,98 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+/* Inter Light */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Light.ttf') format('truetype');
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+/* Inter Regular */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+/* Inter Medium */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Medium.ttf') format('truetype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+/* Inter SemiBold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+/* Inter Bold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Bold.ttf') format('truetype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+/* Inter ExtraBold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-ExtraBold.ttf') format('truetype');
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}
+
+/* Inter Black */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Black.ttf') format('truetype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/* Standard-Schriftart für Ionic */
+:root {
+  --ion-font-family: 'Inter', sans-serif;
+}
+
+

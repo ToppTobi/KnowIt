@@ -1,0 +1,25 @@
+.title {
+  color: black;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between; /* Platz zwischen Titel und Icon */
+  align-items: center; /* Vertikale Ausrichtung */
+  padding: 0 16px; /* Abstand links und rechts */
+}
+
+.title-text {
+  display: flex;
+  font-size: 20px; /* Schriftgröße des Titels */
+  font-weight: bold;
+  margin-left: 10%; /* Verschiebt den Titel etwas nach rechts */
+}
+
+.title-icon {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  font-size: 24px;
+  color: black;
+}
