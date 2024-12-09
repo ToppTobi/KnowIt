@@ -14,7 +14,7 @@ export class SupabaseService {
     this.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
 
-  getClient() {
+  getClient(): SupabaseClient {
     return this.supabase;
   }
 }

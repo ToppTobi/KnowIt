@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseService } from '../supabase/supabase.service';
@@ -19,20 +19,39 @@ export class CreateLearnSetPage {
   imageUrl: string = '';
   flashcards: any[] = [{ question: '', answer: '', answerImage: '', audio: '' }];
 
-  constructor(private supabaseService: SupabaseService) {}
+
+
+constructor(@Inject(SupabaseService) private supabaseService: SupabaseService) {}
 
   async uploadImage(event: any) {
     const file = event.target.files[0];
-    const { data, error } = await this.supabaseService.getClient()
-      .storage.from('images')
-      .upload(`learn-sets/${file.name}`, file);
+    const filePath = `learn-sets/${file.name}`;
 
-    if (error) {
-      console.error('Error uploading image:', error);
-    } else {
-      this.imageUrl = data.path;
+    // Datei hochladen
+    const { data: uploadData, error: uploadError } = await this.supabaseService.getClient()
+      .storage.from('images')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      console.error('Fehler beim Hochladen des Bildes:', uploadError.message);
+      return;
     }
+
+    // Öffentliche URL abrufen
+    const publicUrl = this.supabaseService.getClient()
+      .storage.from('images')
+      .getPublicUrl(filePath).data.publicUrl;
+
+    if (!publicUrl) {
+      console.error('Fehler: Öffentliche URL konnte nicht abgerufen werden');
+      return;
+    }
+
+    // Speichern der öffentlichen URL
+    this.imageUrl = publicUrl;
+    console.log('Öffentliche URL:', this.imageUrl);
   }
+
 
   async uploadAudio(event: any, index: number) {
     const file = event.target.files[0];
@@ -80,4 +99,5 @@ export class CreateLearnSetPage {
       console.log('Learn set created successfully:', data);
     }
   }
+
 }
