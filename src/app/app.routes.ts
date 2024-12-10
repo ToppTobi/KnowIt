@@ -18,4 +18,12 @@ export const routes: Routes = [
     path: 'user',
     loadComponent: () => import('./user/user.page').then(m => m.UserPage),
   },
+  {
+    path: 'learn-flashcards',
+    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then(m => m.LearnFlashcardsPage),
+  },
+  {
+    path: 'learn-flashcards',
+    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then( m => m.LearnFlashcardsPage)
+  },
 ];
