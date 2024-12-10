@@ -3,7 +3,7 @@ import {Routes} from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/learn-sets', // Standardroute zeigt auf LearnSets
+    redirectTo: '/learn-sets',
     pathMatch: 'full',
   },
   {
@@ -23,16 +23,9 @@ export const routes: Routes = [
     loadComponent: () => import('./user/user.page').then(m => m.UserPage),
   },
   {
-    path: 'learn-flashcards',
-    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then(m => m.LearnFlashcardsPage),
+    path: 'learn-flashcards/:id',
+    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then( m => m.LearnFlashcardsPage)
   },
-  {
-    path: 'learn-flashcards',
-    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then(m => m.LearnFlashcardsPage)
-  },
-  {
-    path: 'edit-learn-set',
-    loadComponent: () => import('./edit-learn-set/edit-learn-set.page').then(m => m.EditLearnSetPage)
-  },
+
 
 ];

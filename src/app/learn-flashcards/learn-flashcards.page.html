@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>LearnFlashcards</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Learn Flashcards</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">LearnFlashcards</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="flashcard-container">
+    <div *ngIf="flashcards.length > 0; else noFlashcards" class="flashcard">
+      <h3>Card {{ currentCardIndex + 1 }} of {{ flashcards.length }}</h3>
+      <p><strong>Question:</strong> {{ flashcards[currentCardIndex]?.question }}</p>
+      <p><strong>Answer:</strong> {{ flashcards[currentCardIndex]?.answer }}</p>
+    </div>
+    <ng-template #noFlashcards>
+      <p>No flashcards available.</p>
+    </ng-template>
+  </div>
+
+  <div class="navigation-buttons">
+    <button
+      ion-button
+      [disabled]="currentCardIndex === 0"
+      (click)="showPreviousCard()"
+    >
+      Previous
+    </button>
+    <button
+      ion-button
+      [disabled]="currentCardIndex === flashcards.length - 1"
+      (click)="showNextCard()"
+    >
+      Next
+    </button>
+  </div>
 </ion-content>
