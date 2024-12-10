@@ -14,4 +14,15 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <div class="card-container">
+    <div *ngFor="let learnSet of learnSets" class="card" [style.background-image]="'url(' + learnSet.image_url + ')'">
+      <div class="card-content">
+        <h2 class="card-title">{{ learnSet.title }}</h2>
+        <p class="card-description">{{ learnSet.description }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
 

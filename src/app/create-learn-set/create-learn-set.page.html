@@ -1,19 +1,26 @@
 <ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>KnowIt</ion-title>
+  <ion-toolbar class="toolbar">
+    <div class="header-container">
+      <!-- Menü-Symbol -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <!-- Titel -->
+      <ion-title class="header-title">KnowIt</ion-title>
+
+      <!-- Icon -->
+      <img class="header-icon" src="assets/icon/add.png" alt="Custom Icon" width="24" height="24" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <!-- Create Button (oben rechts unter dem Header) -->
   <div class="top-button-container">
-    <ion-button size="small" color="primary" shape="round" (click)="createLearnSet()">
-      Create LearnSet
-    </ion-button>
+    <button class="create-button" (click)="createLearnSet()">Create LearnSet</button>
   </div>
+
 
   <!-- Content Container -->
   <div class="content-container">

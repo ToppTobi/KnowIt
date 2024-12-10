@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {SupabaseService} from "../supabase/supabase.service";
 
 @Component({
   selector: 'app-learn-sets',
@@ -19,10 +20,12 @@ import {
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonIcon]
 })
 export class LearnSetsPage implements OnInit {
+  learnSets: any[] = [];
 
-  constructor() { }
+  constructor(private supabaseService: SupabaseService) {}
 
-  ngOnInit() {
+async ngOnInit() {
+    this.learnSets = await this.supabaseService.getLearnSets();
   }
 
 }

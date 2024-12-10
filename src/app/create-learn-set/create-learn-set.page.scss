@@ -4,9 +4,84 @@ ion-toolbar {
   font-weight: bold;
 }
 
+.toolbar {
+  --background: #ffffff;
+  --color: #000;
+}
+
+
+.toolbar {
+  --background: #ffffff;
+  --color: #000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+}
+
+
+.header-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+  margin-left: -40px;
+}
+
+
+.header-icon {
+  cursor: pointer;
+}
+
+
+.top-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+/* Container für den Button */
+.top-button-container {
+  display: flex;
+  justify-content: flex-end; /* Button nach rechts ausrichten */
+  padding: 16px; /* Abstand von den Seiten */
+}
+
+
+.create-button {
+  background-color: #a9d6ed;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
+}
+
+
+.create-button:hover {
+  background-color: rgba(184, 205, 214, 0.5);
+
+}
+
+
+.create-button:active {
+  background-color: rgba(41, 70, 87, 0.5);
+  transform: translateY(-2px);
+}
+
+
+
 
 .content-container {
-  margin: 15px; /* Links und rechts Margin von 15px */
+  margin: 15px;
 }
 
 .label {

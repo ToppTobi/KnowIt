@@ -14,6 +14,17 @@ export class SupabaseService {
     this.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
 
+  async getLearnSets() {
+    const { data, error } = await this.supabase
+      .from('learn_sets')
+      .select('*');
+    if (error) {
+      console.error('Error fetching learn sets:', error);
+      return [];
+    }
+    return data;
+  }
+
 
 
   getClient(): SupabaseClient {
