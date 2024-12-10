@@ -35,7 +35,7 @@
 
 .card {
   width: 500px;
-  height: 200px;
+  height: 150px;
   background-size: cover;
   background-position: center;
   border-radius: 12px;
@@ -65,6 +65,56 @@
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   text-align: left;
+}
+
+.create-change-container{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+}
+
+.icon-button {
+  background: black;
+  border-radius: 12px;
+  width: 35px;
+  height: 100%;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.3s ease;
+}
+
+.icon-button img {
+  width: 24px;
+  height: 24px;
+  filter: invert(0);
+  transition: filter 0.1s ease;
+}
+
+.icon-button img {
+  filter: invert(1);
+}
+
+
+
+.learn-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.01s ease;
+}
+
+.learn-button:active {
+  background-color: rgb(135, 137, 137);
 }
 
 

@@ -10,22 +10,47 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {SupabaseService} from "../supabase/supabase.service";
+import { SupabaseService } from "../supabase/supabase.service";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-learn-sets',
   templateUrl: './learn-sets.page.html',
   styleUrls: ['./learn-sets.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonIcon, RouterLink]
 })
 export class LearnSetsPage implements OnInit {
   learnSets: any[] = [];
 
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {}
 
-async ngOnInit() {
-    this.learnSets = await this.supabaseService.getLearnSets();
+  async ngOnInit() {
+    await this.loadLearnSets();
   }
 
+  async ionViewWillEnter() {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state?.['updatedLearnSet']) {
+      const updatedLearnSet = navigation.extras.state['updatedLearnSet'];
+      const index = this.learnSets.findIndex(ls => ls.id === updatedLearnSet.id);
+      if (index > -1) {
+        this.learnSets[index] = updatedLearnSet;
+      } else {
+        this.learnSets.push(updatedLearnSet);
+      }
+    } else {
+      await this.loadLearnSets();
+    }
+  }
+
+  async loadLearnSets() {
+    const { data, error } = await this.supabaseService.getClient()
+      .from('learn_sets')
+      .select('*');
+
+    if (!error) {
+      this.learnSets = data || [];
+    }
+  }
 }

@@ -4,25 +4,23 @@ ion-menu {
   justify-content: center;
   align-items: center;
   width: 50%;
-  border-radius: 0px 15px 15px 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: hidden;
 }
-
-
 
 .sidebar {
   height: 100%;
-  clor: black;
-  border-radius: 15px; /* Abgerundete Ecken unten */
+  color: Black;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Elemente beginnen oben */
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(40px);
 }
 
 .sidebar-header {
-  backdrop-filter: blur(1px);
   padding: 10px;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 900 !important; /* Light für Header */
   text-align: left;
 }

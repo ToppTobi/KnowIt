@@ -9,9 +9,9 @@ import { IonicModule } from '@ionic/angular';
 @Component({
   selector: 'app-create-learn-set',
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
   templateUrl: './create-learn-set.page.html',
   styleUrls: ['./create-learn-set.page.scss'],
+  imports: [CommonModule, FormsModule, IonicModule],
 })
 export class CreateLearnSetPage {
   title: string = '';

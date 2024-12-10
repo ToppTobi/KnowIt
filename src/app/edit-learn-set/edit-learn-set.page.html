@@ -10,61 +10,52 @@
       <ion-title class="header-title">KnowIt</ion-title>
 
       <!-- Icon -->
-      <img class="header-icon" src="assets/icon/add.png" alt="Custom Icon" width="24" height="24" />
+      <img class="header-icon" src="assets/icon/edit.png" alt="Custom Icon" width="24" height="24" />
     </div>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <div class="top-button-container">
-    <button class="create-button" routerLink="/learn-sets" routerDirection="root" (click)="createLearnSet()">Create LearnSet</button>
+    <button class="create-button" routerLink="/learn-sets" routerDirection="root" (click)="saveLearnSet()">Save LearnSet</button>
   </div>
-
-
-  <!-- Content Container -->
   <div class="content-container">
     <!-- Title Input -->
     <div class="form-group">
       <ion-label class="label">Title</ion-label>
-      <textarea class="input textarea" [(ngModel)]="title" placeholder="Title:"></textarea>
+      <textarea class="textarea" [(ngModel)]="title" placeholder="Enter Title"></textarea>
     </div>
 
     <!-- Description Input -->
     <div class="form-group">
       <ion-label class="label">Description</ion-label>
-      <textarea class="textarea" [(ngModel)]="description" placeholder="Description:"></textarea>
+      <textarea class="textarea" [(ngModel)]="description" placeholder="Enter Description"></textarea>
     </div>
 
-    <!-- Image Preview -->
+    <!-- Image Upload -->
     <div class="form-group">
       <ion-label class="label">Learn Set Picture</ion-label>
       <div class="image-preview-container">
         <img *ngIf="imageUrl" [src]="imageUrl" alt="Preview" class="image-preview" />
-        <div *ngIf="!imageUrl" class="placeholder-text">Füge das Bild ein</div>
+        <div *ngIf="!imageUrl" class="placeholder-text">Add an image</div>
         <input type="file" (change)="uploadImage($event)" class="file-input" />
       </div>
     </div>
 
-    <!-- Flashcards Section -->
+    <!-- Flashcards -->
     <div class="form-group">
       <ion-label class="label">Cards</ion-label>
       <div *ngFor="let card of flashcards; let i = index" class="flashcard">
-        <div class="card-header">{{ i + 1 }}</div>
-        <div>
-          <ion-label position="stacked">Question:</ion-label>
-          <textarea class="textarea" [(ngModel)]="card.question" placeholder="Question:"></textarea>
+        <div class="card-header">Card {{ i + 1 }}</div>
+        <div class="question-answer-container">
+        <textarea class="textarea" [(ngModel)]="card.question" placeholder="Enter Question"></textarea>
+        <textarea class="textarea" [(ngModel)]="card.answer" placeholder="Enter Answer"></textarea>
         </div>
-        <div>
-          <ion-label position="stacked">Answer:</ion-label>
-          <textarea class="textarea" [(ngModel)]="card.answer" placeholder="Answer:"></textarea>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <div class="bottom-add-button-container">
-    <button class="add-flashcards-button" (click)="addFlashcard()">Add Flashcard</button>
+  <div class="bottom-button-container">
+    <button class="add-flashcard-button" (click)="addFlashcard()">Add Flashcard</button>
   </div>
 </ion-content>

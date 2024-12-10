@@ -8,7 +8,7 @@
         <ion-title class="title">LearnSets</ion-title>
       </div>
       <div class="title-icon">
-        <img class="icons" src="assets/icon/home.png" alt="Custom Icon" width="24" height="24"/>
+        <img class="icons" src="assets/icon/home.png" alt="Custom Icon" width="24" height="24" />
       </div>
     </div>
   </ion-toolbar>
@@ -16,13 +16,31 @@
 
 <ion-content>
   <div class="card-container">
+    <!-- Schleife durch die LearnSets -->
     <div *ngFor="let learnSet of learnSets" class="card" [style.background-image]="'url(' + learnSet.image_url + ')'">
       <div class="card-content">
         <h2 class="card-title">{{ learnSet.title }}</h2>
         <p class="card-description">{{ learnSet.description }}</p>
       </div>
+
+      <!-- Container für die Buttons -->
+      <div class="create-change-container">
+        <!-- Edit-Button -->
+        <button
+          class="icon-button"
+          [routerLink]="['/edit-learn-set', learnSet.id]"
+          routerDirection="forward">
+          <img src="assets/icon/edit.png" alt="Edit Icon" width="24" height="24" />
+        </button>
+
+        <!-- Learn-Button -->
+        <button
+          class="learn-button"
+          [routerLink]="['/learn-flashcards', learnSet.id]"
+          routerDirection="forward">
+          Learn
+        </button>
+      </div>
     </div>
   </div>
 </ion-content>
-
-

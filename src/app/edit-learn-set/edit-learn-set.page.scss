@@ -121,7 +121,8 @@ ion-toolbar {
   background-color: #B8CDD6;
   opacity: 0.75;
   border:none;
-
+  padding: 10px;
+  margin-top: 5px;
 }
 
 
@@ -166,7 +167,9 @@ ion-toolbar {
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
+
   background-color: rgba(184, 205, 214, 0.51);
+
 }
 
 .card-header {
@@ -179,9 +182,8 @@ ion-toolbar {
   background-color: #f1f1f1;
   border-radius: 8px;
   margin-bottom: 8px;
+
 }
-
-
 
 .top-button-container {
   display: flex;
@@ -189,11 +191,12 @@ ion-toolbar {
   padding: 10px 15px;
 }
 
-.bottom-add-button-container {
+
+.bottom-button-container {
   margin: 15px;
 }
 
-.add-flashcards-button {
+.add-flashcard-button {
   background-color: #a9d6ed;
   width: 100%;
   color: black;
@@ -208,15 +211,13 @@ ion-toolbar {
 }
 
 
-.add-flashcards-button:hover {
+.add-flashcard-button:hover {
   background-color: rgba(184, 205, 214, 0.5);
 
 }
 
 
-.add-flashcards-button:active {
+.add-flashcard-button:active {
   background-color: rgba(41, 70, 87, 0.5);
 }
-
-
 

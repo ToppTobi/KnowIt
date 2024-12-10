@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadComponent: () => import('./create-learn-set/create-learn-set.page').then(m => m.CreateLearnSetPage),
   },
   {
+    path: 'edit-learn-set/:id',
+    loadComponent: () => import('./edit-learn-set/edit-learn-set.page').then(m => m.EditLearnSetPage)
+  },
+  {
     path: 'user',
     loadComponent: () => import('./user/user.page').then(m => m.UserPage),
   },
@@ -24,6 +28,11 @@ export const routes: Routes = [
   },
   {
     path: 'learn-flashcards',
-    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then( m => m.LearnFlashcardsPage)
+    loadComponent: () => import('./learn-flashcards/learn-flashcards.page').then(m => m.LearnFlashcardsPage)
   },
+  {
+    path: 'edit-learn-set',
+    loadComponent: () => import('./edit-learn-set/edit-learn-set.page').then(m => m.EditLearnSetPage)
+  },
+
 ];
