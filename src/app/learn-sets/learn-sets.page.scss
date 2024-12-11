@@ -90,13 +90,14 @@
 .icon-button img {
   width: 24px;
   height: 24px;
-  filter: invert(0);
+  filter: invert(0); /* Erster Filter */
   transition: filter 0.1s ease;
 }
 
 .icon-button img {
-  filter: invert(1);
+  filter: invert(1); /* Zweiter Filter überschreibt den ersten */
 }
+
 
 
 
@@ -116,6 +117,19 @@
 .learn-button:active {
   background-color: rgb(135, 137, 137);
 }
+
+.learnset-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-flashcard-button-container {
+  display: flex;
+  justify-content: right;
+  padding-bottom: 7px;
+}
+
+
 
 
 

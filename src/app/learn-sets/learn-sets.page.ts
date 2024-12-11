@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   IonButtons,
   IonContent,
@@ -10,8 +10,8 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import { SupabaseService } from "../supabase/supabase.service";
-import { Router, RouterLink } from "@angular/router";
+import {SupabaseService} from "../supabase/supabase.service";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-learn-sets',
@@ -23,7 +23,8 @@ import { Router, RouterLink } from "@angular/router";
 export class LearnSetsPage implements OnInit {
   learnSets: any[] = [];
 
-  constructor(private supabaseService: SupabaseService, private router: Router) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {
+  }
 
   async ngOnInit() {
     await this.loadLearnSets();
@@ -45,7 +46,7 @@ export class LearnSetsPage implements OnInit {
   }
 
   async loadLearnSets() {
-    const { data, error } = await this.supabaseService.getClient()
+    const {data, error} = await this.supabaseService.getClient()
       .from('learn_sets')
       .select('*');
 
@@ -53,4 +54,14 @@ export class LearnSetsPage implements OnInit {
       this.learnSets = data || [];
     }
   }
+
+  async deleteLearnSet(index: number) {
+    const learnsetToDelete = this.learnSets[index];
+    const {error} = await this.supabaseService.getClient()
+      .from('learn_sets')
+      .delete()
+      .eq('id', learnsetToDelete.id);
+    this.learnSets.splice(index, 1);
+  }
+
 }

@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SupabaseService } from '../supabase/supabase.service';
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { IonicModule } from "@ionic/angular";
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SupabaseService} from '../supabase/supabase.service';
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {IonicModule} from "@ionic/angular";
 
 @Component({
   selector: 'app-edit-learn-set',
@@ -24,7 +24,8 @@ export class EditLearnSetPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     this.learnSetId = this.route.snapshot.paramMap.get('id');
@@ -34,7 +35,7 @@ export class EditLearnSetPage implements OnInit {
   }
 
   async loadLearnSet(id: string) {
-    const { data, error } = await this.supabaseService.getClient()
+    const {data, error} = await this.supabaseService.getClient()
       .from('learn_sets')
       .select('*')
       .eq('id', id)
@@ -56,22 +57,22 @@ export class EditLearnSetPage implements OnInit {
     const checkResult = await this.supabaseService.getClient()
       .storage
       .from('images')
-      .list('learn-sets', { search: file.name });
+      .list('learn-sets', {search: file.name});
 
     if (checkResult.data && checkResult.data.length > 0) {
-      const { data: publicData } = this.supabaseService.getClient()
+      const {data: publicData} = this.supabaseService.getClient()
         .storage
         .from('images')
         .getPublicUrl(filePath);
       this.imageUrl = publicData?.publicUrl || '';
     } else {
-      const { data, error } = await this.supabaseService.getClient()
+      const {data, error} = await this.supabaseService.getClient()
         .storage
         .from('images')
         .upload(filePath, file);
 
       if (!error) {
-        const { data: publicData } = this.supabaseService.getClient()
+        const {data: publicData} = this.supabaseService.getClient()
           .storage
           .from('images')
           .getPublicUrl(filePath);
@@ -82,7 +83,7 @@ export class EditLearnSetPage implements OnInit {
     if (this.learnSetId) {
       await this.supabaseService.getClient()
         .from('learn_sets')
-        .update({ image_url: this.imageUrl })
+        .update({image_url: this.imageUrl})
         .eq('id', this.learnSetId);
     }
 
@@ -90,12 +91,12 @@ export class EditLearnSetPage implements OnInit {
   }
 
   addFlashcard() {
-    this.flashcards.push({ question: '', answer: '', answerImage: '', audio: '' });
+    this.flashcards.push({question: '', answer: '', answerImage: '', audio: ''});
   }
 
   async saveLearnSet() {
     if (this.learnSetId) {
-      const { data, error } = await this.supabaseService.getClient()
+      const {data, error} = await this.supabaseService.getClient()
         .from('learn_sets')
         .update({
           title: this.title,
@@ -106,16 +107,26 @@ export class EditLearnSetPage implements OnInit {
         .eq('id', this.learnSetId);
 
       if (!error) {
-        const { data: updatedData } = await this.supabaseService.getClient()
+        const {data: updatedData} = await this.supabaseService.getClient()
           .from('learn_sets')
           .select('*')
           .eq('id', this.learnSetId)
           .single();
 
         if (updatedData) {
-          this.router.navigate(['/learn-sets'], { state: { updatedLearnSet: updatedData } });
+          this.router.navigate(['/learn-sets'], {state: {updatedLearnSet: updatedData}});
         }
       }
     }
+  }
+
+  async deleteFlashcard(index: number) {
+    this.flashcards.splice(index, 1);
+
+    const {error} = await this.supabaseService.getClient()
+      .from('learn_sets')
+      .update({flashcards: JSON.stringify(this.flashcards)})
+      .eq('id', this.learnSetId);
+
   }
 }

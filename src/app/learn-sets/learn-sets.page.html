@@ -8,7 +8,7 @@
         <ion-title class="title">LearnSets</ion-title>
       </div>
       <div class="title-icon">
-        <img class="icons" src="assets/icon/home.png" alt="Custom Icon" width="24" height="24" />
+        <img class="icons" src="assets/icon/home.png" alt="Custom Icon" width="24" height="24"/>
       </div>
     </div>
   </ion-toolbar>
@@ -17,9 +17,16 @@
 <ion-content>
   <div class="card-container">
     <!-- Schleife durch die LearnSets -->
-    <div *ngFor="let learnSet of learnSets" class="card" [style.background-image]="'url(' + learnSet.image_url + ')'">
+    <div *ngFor="let learnSet of learnSets; let i = index" class="card" [style.background-image]="'url(' + learnSet.image_url + ')'">
       <div class="card-content">
-        <h2 class="card-title">{{ learnSet.title }}</h2>
+        <div class="learnset-top">
+          <div>
+            <h2 class="card-title">{{ learnSet.title }}</h2>
+          </div>
+          <div class="delete-flashcard-button-container">
+            <img class="header-icon" src="assets/icon/delete.png" alt="Custom Icon" width="24" height="24" (click)="deleteLearnSet(i)"/>
+          </div>
+        </div>
         <p class="card-description">{{ learnSet.description }}</p>
       </div>
 
@@ -30,7 +37,7 @@
           class="icon-button"
           [routerLink]="['/edit-learn-set', learnSet.id]"
           routerDirection="forward">
-          <img src="assets/icon/edit.png" alt="Edit Icon" width="24" height="24" />
+          <img src="assets/icon/edit.png" alt="Edit Icon" width="24" height="24"/>
         </button>
 
         <!-- Learn-Button -->
@@ -43,6 +50,8 @@
       </div>
     </div>
   </div>
+
+
 </ion-content>
 
 

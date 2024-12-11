@@ -45,11 +45,14 @@
     <!-- Flashcards -->
     <div class="form-group">
       <ion-label class="label">Cards</ion-label>
-      <div *ngFor="let card of flashcards; let i = index" class="flashcard">
+      <div *ngFor="let flashcard of flashcards; let i = index" class="flashcard">
+        <div class="delete-flashcard-button-container">
+          <img class="header-icon" src="assets/icon/delete.png" alt="Custom Icon" width="24" height="24" (click)="deleteFlashcard(i)"/>
+        </div>
         <div class="card-header">Card {{ i + 1 }}</div>
         <div class="question-answer-container">
-        <textarea class="textarea" [(ngModel)]="card.question" placeholder="Enter Question"></textarea>
-        <textarea class="textarea" [(ngModel)]="card.answer" placeholder="Enter Answer"></textarea>
+        <textarea class="textarea" [(ngModel)]="flashcard.question"  placeholder="Enter Question"></textarea>
+        <textarea class="textarea" [(ngModel)]="flashcard.answer" placeholder="Enter Answer"></textarea>
         </div>
       </div>
     </div>

@@ -88,4 +88,12 @@ constructor(@Inject(SupabaseService) private supabaseService: SupabaseService) {
     }
   }
 
+ async deleteFlashcard(index: number) {
+  const flashcardToDelete = this.flashcards[index];
+   const {error} = await this.supabaseService.getClient()
+     .from('learn_sets')
+     .delete()
+     .eq('id', flashcardToDelete.id);
+    this.flashcards.splice(index, 1);
+  }
 }
