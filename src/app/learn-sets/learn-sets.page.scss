@@ -129,6 +129,26 @@
   padding-bottom: 7px;
 }
 
+.floating-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(192, 216, 225);
+  color: black;
+  border: none;
+  border-radius: 15px;
+  font-size: 30px;
+  z-index: 100;
+  transition: background-color 0.01s ease;
+}
+
+
+.floating-button:active {
+  background-color: rgb(142, 197, 215);
+}
+
 
 
 

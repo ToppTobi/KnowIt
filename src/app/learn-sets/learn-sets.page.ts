@@ -64,4 +64,10 @@ export class LearnSetsPage implements OnInit {
     this.learnSets.splice(index, 1);
   }
 
+  onFloatingButtonClick() {
+    console.log('Floating button clicked!');
+    this.router.navigate(['/create-learn-set']);
+  }
+
+
 }

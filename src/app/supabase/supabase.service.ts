@@ -35,4 +35,20 @@ export class SupabaseService {
   getClient(): SupabaseClient {
     return this.supabase;
   }
+
+  async signIn(email: string, password: string) {
+    return await this.supabase.auth.signInWithPassword({ email, password });
+  }
+
+  async signUp(email: string, password: string) {
+    return await this.supabase.auth.signUp({ email, password });
+  }
+
+  async signOut() {
+    return await this.supabase.auth.signOut();
+  }
+
+  getUser() {
+    return this.supabase.auth.getUser();
+  }
 }

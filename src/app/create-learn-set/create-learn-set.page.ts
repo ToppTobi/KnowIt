@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseService } from '../supabase/supabase.service';
 import { IonicModule } from '@ionic/angular';
+import {Router} from "@angular/router";
 
 
 
@@ -21,7 +22,7 @@ export class CreateLearnSetPage {
 
 
 
-constructor(@Inject(SupabaseService) private supabaseService: SupabaseService) {}
+constructor(@Inject(SupabaseService) private supabaseService: SupabaseService, private router: Router) {}
 
   async uploadImage(event: any) {
     const file = event.target.files[0];
@@ -81,11 +82,8 @@ constructor(@Inject(SupabaseService) private supabaseService: SupabaseService) {
         flashcards: this.flashcards,
       });
 
-    if (error) {
-      console.error('Error creating learn set:', error);
-    } else {
-      console.log('Learn set created successfully:', data);
-    }
+
+    this.router.navigate(['/learn-sets']);
   }
 
  async deleteFlashcard(index: number) {

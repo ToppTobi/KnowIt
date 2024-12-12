@@ -3,19 +3,27 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>wdwdaddwd</ion-title>
+    <ion-title>User Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dwdwdwd</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="!user">
+    <h2>Login</h2>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="login()">Login</ion-button>
+    <ion-button expand="block" color="secondary" (click)="signUp()">Sign Up</ion-button>
+  </div>
 
-  <div id="container">
-    <strong class="capitalize">KKK</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div *ngIf="user">
+    <h2>Welcome, {{ user.email }}</h2>
+    <ion-button expand="block" color="danger" (click)="logout()">Logout</ion-button>
   </div>
 </ion-content>
