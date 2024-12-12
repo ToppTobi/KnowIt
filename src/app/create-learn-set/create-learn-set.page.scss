@@ -265,4 +265,35 @@ ion-toolbar {
   cursor: pointer;
 }
 
+.audio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.audio-button {
+  background-color: #a9d6ed;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
+}
+
+.audio-button:active {
+  background-color: rgba(41, 70, 87, 0.5);
+}
+
+.audio-container audio {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+
 
