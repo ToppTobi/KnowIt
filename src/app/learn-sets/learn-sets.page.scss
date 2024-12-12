@@ -1,6 +1,3 @@
-
-
-
 .title-container {
   display: flex;
   justify-content: space-between;
@@ -13,6 +10,16 @@
   font-size: 20px;
   font-weight: bold;
   margin-left: 10%;
+}
+
+
+.header-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 40px;
+  flex: 1;
+  color: black;
 }
 
 .title-icon {

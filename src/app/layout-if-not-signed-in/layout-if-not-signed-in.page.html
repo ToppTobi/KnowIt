@@ -1,0 +1,20 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="toolbar">
+    <div class="header-container">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="header-title">KnowIt</ion-title>
+      <img class="header-icon" src="assets/icon/add.png" alt="Custom Icon" width="24" height="24" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="!isAuthenticated" class="auth-warning">
+    <p>You are not signed in</p>
+    <a routerLink="/user">Please sign in here</a>
+  </div>
+  <ng-content></ng-content>
+
+</ion-content>

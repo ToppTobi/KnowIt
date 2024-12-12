@@ -3,13 +3,23 @@ import { SupabaseService } from '../supabase/supabase.service';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
+import {RouterLink} from "@angular/router";
+import {
+  IonButtons, IonContent,
+  IonHeader,
+  IonInput,
+  IonLabel,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.page.html',
   styleUrls: ['./user.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, RouterLink, IonLabel, IonInput, IonButtons, IonToolbar, IonHeader, IonMenuButton, IonTitle, IonContent],
 })
 export class UserPage implements OnInit {
   email: string = '';
@@ -19,9 +29,12 @@ export class UserPage implements OnInit {
   constructor(private supabaseService: SupabaseService) {}
 
   async ngOnInit() {
-    const { data } = await this.supabaseService.getUser();
-    this.user = data.user;
+    this.user = await this.supabaseService.getUser();
+    if (!this.user) {
+      console.error('User not logged in');
+    }
   }
+
 
   async login() {
     const { error, data } = await this.supabaseService.signIn(this.email, this.password);

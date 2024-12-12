@@ -7,9 +7,11 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
+
   constructor() {
     const SUPABASE_URL = 'https://xnascnbnsxfeunglophc.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhuYXNjbmJuc3hmZXVuZ2xvcGhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM3NTA0ODEsImV4cCI6MjA0OTMyNjQ4MX0.ji4KXAlsO42xIuwtWwITJ7KRoPHHU2IuluCWRWevMhQ';
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     this.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       auth: {
@@ -32,7 +34,7 @@ export class SupabaseService {
 
 
 
-  getClient(): SupabaseClient {
+  getClient() {
     return this.supabase;
   }
 
@@ -48,7 +50,12 @@ export class SupabaseService {
     return await this.supabase.auth.signOut();
   }
 
-  getUser() {
-    return this.supabase.auth.getUser();
+  async getUser() {
+    const { data, error } = await this.supabase.auth.getUser();
+    if (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+    return data.user;
   }
 }

@@ -3,36 +3,68 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Learn Flashcards</ion-title>
+    <ion-title routerLink="/learn-sets">KnowIt</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="flashcard-container">
-    <div *ngIf="flashcards.length > 0; else noFlashcards" class="flashcard">
-      <h3>Card {{ currentCardIndex + 1 }} of {{ flashcards.length }}</h3>
-      <p><strong>Question:</strong> {{ flashcards[currentCardIndex]?.question }}</p>
-      <p><strong>Answer:</strong> {{ flashcards[currentCardIndex]?.answer }}</p>
-    </div>
-    <ng-template #noFlashcards>
-      <p>No flashcards available.</p>
-    </ng-template>
+  <div class="title-container">
+    {{ learnSetTitle }}
   </div>
 
-  <div class="navigation-buttons">
-    <button
-      ion-button
-      [disabled]="currentCardIndex === 0"
-      (click)="showPreviousCard()"
-    >
-      Previous
-    </button>
-    <button
-      ion-button
-      [disabled]="currentCardIndex === flashcards.length - 1"
-      (click)="showNextCard()"
-    >
-      Next
-    </button>
+  <div class="card-position" *ngIf="flashcards.length > 0; else endOfLearnSet">
+    <div class="card-container" (click)="rotateCard()">
+      <div class="items-above-flashcards-container">
+        <div class="wrong-flashcards">{{ solvedWrongCount }}</div>
+        <h3 class="current-card">{{ currentCardIndex + 1 }} / {{ flashcards.length }}</h3>
+        <div class="correct-flashcards">{{ solvedCorrectCount }}</div>
+      </div>
+
+      <div class="card" [ngClass]="{'rotated': isRotated}">
+        <div class="front">
+          {{ flashcards[currentCardIndex]?.question }}
+        </div>
+        <div class="back">
+          {{ flashcards[currentCardIndex]?.answer }}
+        </div>
+      </div>
+    </div>
+
+    <div class="navigation-buttons">
+      <img class="header-icon" src="assets/icon/wrong.png" alt="Wrong Icon" width="52" height="52"
+           (click)="solvedWrong()"/>
+      <img class="header-icon" src="assets/icon/correct.png" alt="Correct Icon" width="52" height="52"
+           (click)="solvedRight()"/>
+    </div>
   </div>
+
+  <ng-template #endOfLearnSet>
+    <div *ngIf="wrongFlashcards.length > 0; else allCorrect" class="action-buttons">
+      <div class="wrong-and-correct-container">
+        <div class="wrong-percent">
+          {{ getWrongPercentage() }}%
+        </div>
+        <div class="correct-percent">
+          {{ getCorrectPercentage() }}%
+        </div>
+      </div>
+      <div class="buttons-retry-container">
+      <button class="retry-button" (click)="retryWrong()">Retry wrong cards</button>
+      <button class="retry-button" (click)="retryAll()">Retry all cards</button>
+      <button class="return-button" routerLink="/learn-sets">Back to Learn Sets</button>
+      </div>
+    </div>
+
+    <ng-template #allCorrect>
+      <div class="action-buttons">
+        <div class="congrats-container">
+          Congratulation! You mastered this LearnSet
+        </div>
+        <div class="buttons-retry-container">
+        <button class="retry-button" (click)="retryAll()">Retry all cards</button>
+        <button class="return-button" routerLink="/learn-sets">Back to Learn Sets</button>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
 </ion-content>

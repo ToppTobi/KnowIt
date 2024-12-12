@@ -4,7 +4,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title class="header-title">KnowIt</ion-title>
+      <ion-title class="header-title" routerLink="/learn-sets">KnowIt</ion-title>
       <img class="header-icon" src="assets/icon/add.png" alt="Custom Icon" width="24" height="24" />
     </div>
   </ion-toolbar>
@@ -34,11 +34,21 @@
     <div class="form-group">
       <ion-label class="label">Learn Set Picture</ion-label>
       <div class="image-preview-container">
-        <img *ngIf="imageUrl" [src]="imageUrl" alt="Preview" class="image-preview" />
-        <div *ngIf="!imageUrl" class="placeholder-text">Füge das Bild ein</div>
-        <input type="file" (change)="uploadImage($event)" class="file-input" />
+        <div
+          class="image-preview"
+          [style.background-image]="'url(' + imageUrl + ')'"
+          *ngIf="imageUrl"
+        ></div>
+        <div *ngIf="!imageUrl" class="placeholder-text">No image selected</div>
+        <div class="button-group">
+          <button class="upload-button" (click)="takePicture()">Take Picture</button>
+          <button class="upload-button" (click)="pickImage()">Pick Image</button>
+        </div>
       </div>
     </div>
+
+
+
 
     <div class="form-group">
       <ion-label class="label">Cards</ion-label>

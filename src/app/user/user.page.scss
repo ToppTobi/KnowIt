@@ -1,0 +1,81 @@
+ion-toolbar {
+  --background: #fff;
+  --color: #000;
+  font-weight: bold;
+}
+
+.toolbar {
+  --background: #ffffff;
+  --color: #000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+  margin-left: -40px;
+}
+
+.content-container {
+  margin: 15px;
+}
+.label-container{
+  display: flex;
+  justify-content: center;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: black;
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 2;
+  text-align: left;
+  vertical-align: top;
+  resize: none;
+  background-color: #B8CDD6;
+  opacity: 0.75;
+  border: none;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.top-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.create-button {
+  background-color: #a9d6ed;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
+}
+
+
+.create-button:active {
+  background-color: rgba(41, 70, 87, 0.5);
+}

@@ -44,11 +44,11 @@ ion-toolbar {
   padding: 16px;
 }
 
-/* Container für den Button */
+
 .top-button-container {
   display: flex;
-  justify-content: flex-end; /* Button nach rechts ausrichten */
-  padding: 16px; /* Abstand von den Seiten */
+  justify-content: flex-end;
+  padding: 16px;
 }
 
 
@@ -223,6 +223,46 @@ ion-toolbar {
   display: flex;
   justify-content: right;
   padding-bottom: 7px;
+}
+
+
+.image-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px; /* Abstand zwischen Bild und Buttons */
+}
+
+.image-preview {
+  width: 500px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-button {
+  background-color: #B8CDD6;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 

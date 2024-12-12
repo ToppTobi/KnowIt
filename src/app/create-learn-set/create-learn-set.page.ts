@@ -1,78 +1,69 @@
-import {Component, Inject} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseService } from '../supabase/supabase.service';
 import { IonicModule } from '@ionic/angular';
-import {Router} from "@angular/router";
-
-
+import {Router, RouterLink} from '@angular/router';
+import {Camera, CameraResultType, CameraSource} from "@capacitor/camera";
 
 @Component({
   selector: 'app-create-learn-set',
   standalone: true,
   templateUrl: './create-learn-set.page.html',
   styleUrls: ['./create-learn-set.page.scss'],
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule, RouterLink],
 })
 export class CreateLearnSetPage {
   title: string = '';
   description: string = '';
   imageUrl: string = '';
-  flashcards: any[] = [{ question: '', answer: '', answerImage: '', audio: '' }];
+  flashcards: any[] = [{ question: '', answer: '' }];
 
+  constructor(@Inject(SupabaseService) private supabaseService: SupabaseService, private router: Router) {}
 
+  async takePicture() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera,
+      });
 
-constructor(@Inject(SupabaseService) private supabaseService: SupabaseService, private router: Router) {}
-
-  async uploadImage(event: any) {
-    const file = event.target.files[0];
-    const filePath = `learn-sets/${file.name}`;
-
-
-    const checkResult = await this.supabaseService.getClient()
-      .storage
-      .from('images')
-      .list('learn-sets', { search: file.name });
-
-    if (checkResult.data && checkResult.data.length > 0) {
-      const { data: publicData } = this.supabaseService.getClient()
-        .storage
-        .from('images')
-        .getPublicUrl(filePath);
-
-      this.imageUrl = publicData?.publicUrl || '';
-      console.log('Using existing file URL:', this.imageUrl);
-      return;
+      if (image?.dataUrl) {
+        this.imageUrl = image.dataUrl;
+      }
+    } catch (error) {
+      console.error('Error taking picture:', error);
     }
-
-
-    const { data, error } = await this.supabaseService.getClient()
-      .storage
-      .from('images')
-      .upload(filePath, file);
-
-    if (error) {
-      console.error('Upload error:', error);
-      return;
-    }
-
-
-    const { data: publicData } = this.supabaseService.getClient()
-      .storage
-      .from('images')
-      .getPublicUrl(filePath);
-
-    this.imageUrl = publicData?.publicUrl || '';
-    console.log('Uploaded new file and set URL:', this.imageUrl);
   }
 
+  async pickImage() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Photos,
+      });
 
+      if (image?.dataUrl) {
+        this.imageUrl = image.dataUrl;
+      }
+    } catch (error) {
+      console.error('Error picking image:', error);
+    }
+  }
 
   addFlashcard() {
-    this.flashcards.push({ question: '', answer: '', answerImage: '', audio: '' });
+    this.flashcards.push({ question: '', answer: '' });
   }
 
   async createLearnSet() {
+    const user = await this.supabaseService.getUser();
+    if (!user) {
+      console.error('User is not logged in');
+      return;
+    }
+
     const { data, error } = await this.supabaseService.getClient()
       .from('learn_sets')
       .insert({
@@ -80,18 +71,20 @@ constructor(@Inject(SupabaseService) private supabaseService: SupabaseService, p
         description: this.description,
         image_url: this.imageUrl,
         flashcards: this.flashcards,
+        user_id: user.id,
       });
 
+    if (error) {
+      console.error('Error creating learn set:', error);
+    } else {
+      console.log('Learn set created successfully:', data);
+    }
 
     this.router.navigate(['/learn-sets']);
   }
 
- async deleteFlashcard(index: number) {
-  const flashcardToDelete = this.flashcards[index];
-   const {error} = await this.supabaseService.getClient()
-     .from('learn_sets')
-     .delete()
-     .eq('id', flashcardToDelete.id);
+
+  async deleteFlashcard(index: number) {
     this.flashcards.splice(index, 1);
   }
 }

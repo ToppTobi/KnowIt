@@ -1,9 +1,14 @@
+ion-title {
+  padding-left: 30%;
+  color: black;
+}
+
 .flashcard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90%;
+  height: 100%;
   padding: 16px;
   text-align: center;
   background-color: #f9f9f9;
@@ -21,26 +26,191 @@
 
 .navigation-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   margin: 16px;
 }
 
-button[ion-button] {
-  padding: 8px 16px;
-  font-size: 16px;
-  border-radius: 8px;
-  background-color: #007bff;
-  color: white;
+.title-container {
+  display: flex;
+  justify-content: center;
+  font-weight: 900;
+  padding-top: 50px;
+  font-size: 18px;
+}
+
+.items-above-flashcards-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.items-above-flashcards-container div {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 900;
+}
+
+
+.wrong-flashcards {
+ background: rgba(219, 86, 86, 0.5);
+}
+
+.current-card {
+  font-weight: 900;
+}
+
+
+.correct-flashcards {
+background: rgba(86, 219, 126, 0.5);
+}
+
+
+
+.card-position {
+  padding: 16px;
+}
+
+.card-container {
+  perspective: 1000px;
+
+}
+
+.card {
+  position: relative;
+  height: 150px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card.rotated {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 20px;
+}
+
+.front {
+  background-color: rgba(184, 205, 214, 0.5);
+}
+
+.back {
+  background-color: rgb(184, 205, 214);
+  transform: rotateY(180deg);
+}
+
+.action-buttons,
+.no-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.buttons-retry-container {
+  background-color: #B8CDD6;
+  width: 90%;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.retry-button {
+  background-color: #a9d6ed;
+  width: 100%;
+  height: 75px;
+  color: black;
   border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
 }
 
-button[ion-button]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.retry-button:active {
+  background-color: rgba(41, 70, 87, 0.5);
 }
 
-button[ion-button]:hover:not(:disabled) {
-  background-color: #0056b3;
+.return-button {
+  background-color: rgba(41, 70, 87, 0.5);
+  width: 100%;
+  height: 50px;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.wrong-and-correct-container {
+ display: flex;
+  gap: 50px;
+}
+
+.wrong-and-correct-container div {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 900;
+}
+
+
+.wrong-percent {
+  background: rgba(219, 86, 86, 0.5);
+}
+
+.current-card {
+  font-weight: 900;
+}
+
+
+.correct-percent {
+  background: rgba(86, 219, 126, 0.5);
+}
+
+
+.congrats-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-weight: 600;
+}
+
+

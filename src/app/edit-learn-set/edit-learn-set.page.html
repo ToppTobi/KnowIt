@@ -1,15 +1,11 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar class="toolbar">
     <div class="header-container">
-      <!-- Menü-Symbol -->
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
 
-      <!-- Titel -->
-      <ion-title class="header-title">KnowIt</ion-title>
-
-      <!-- Icon -->
+      <ion-title class="header-title" routerLink="/learn-sets">KnowIt</ion-title>
       <img class="header-icon" src="assets/icon/edit.png" alt="Custom Icon" width="24" height="24" />
     </div>
   </ion-toolbar>
@@ -20,7 +16,6 @@
     <button class="create-button" routerLink="/learn-sets" routerDirection="root" (click)="saveLearnSet()">Save LearnSet</button>
   </div>
   <div class="content-container">
-    <!-- Title Input -->
     <div class="form-group">
       <ion-label class="label">Title</ion-label>
       <textarea class="textarea" [(ngModel)]="title" placeholder="Enter Title"></textarea>

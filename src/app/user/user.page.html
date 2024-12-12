@@ -1,29 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>User Home</ion-title>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="toolbar">
+    <div class="header-container">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title class="header-title" routerLink="/learn-sets">KnowIt</ion-title>
+      <img class="header-icon" src="assets/icon/user.png" alt="Custom Icon" width="24" height="24" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div *ngIf="!user">
-    <h2>Login</h2>
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-    <ion-button expand="block" (click)="login()">Login</ion-button>
-    <ion-button expand="block" color="secondary" (click)="signUp()">Sign Up</ion-button>
+<ion-content>
+  <div *ngIf="!user" class="content-container">
+    <div class="label-container">
+    <h2 class="label">Login</h2>
+    </div>
+    <div class="form-group">
+      <ion-label class="label">Email</ion-label>
+      <textarea class="textarea" [(ngModel)]="email" placeholder="Enter your email"></textarea>
+    </div>
+    <div class="form-group">
+      <ion-label class="label">Password</ion-label>
+      <ion-input
+        type="password"
+        class="textarea"
+        [(ngModel)]="password"
+        placeholder="Enter your password"
+      ></ion-input>
+    </div>
+    <div class="top-button-container">
+      <button class="create-button" (click)="login()">Login</button>
+      <button class="create-button" (click)="signUp()">Sign Up</button>
+    </div>
   </div>
 
-  <div *ngIf="user">
-    <h2>Welcome, {{ user.email }}</h2>
-    <ion-button expand="block" color="danger" (click)="logout()">Logout</ion-button>
+  <div *ngIf="user" class="content-container">
+    <h2 class="label">Welcome, {{ user.email }}</h2>
+    <div class="top-button-container">
+      <button class="create-button" color="danger" (click)="logout()">Logout</button>
+    </div>
   </div>
 </ion-content>

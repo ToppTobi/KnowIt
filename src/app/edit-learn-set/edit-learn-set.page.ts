@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {SupabaseService} from '../supabase/supabase.service';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
@@ -10,7 +10,7 @@ import {IonicModule} from "@ionic/angular";
   templateUrl: './edit-learn-set.page.html',
   styleUrls: ['./edit-learn-set.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule, RouterLink],
 })
 export class EditLearnSetPage implements OnInit {
   title: string = '';
@@ -18,19 +18,26 @@ export class EditLearnSetPage implements OnInit {
   imageUrl: string = '';
   flashcards: any[] = [];
   learnSetId: string | null = null;
+  userId: string | null = null;
 
   constructor(
     private supabaseService: SupabaseService,
     private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
-    this.learnSetId = this.route.snapshot.paramMap.get('id');
-    if (this.learnSetId) {
-      await this.loadLearnSet(this.learnSetId);
+    const user = await this.supabaseService.getUser();
+    if (user) {
+      this.userId = user.id;
+      this.learnSetId = this.route.snapshot.paramMap.get('id');
+      if (this.learnSetId) {
+        await this.loadLearnSet(this.learnSetId);
+      }
+    } else {
+      console.error('User not authenticated');
+      this.router.navigate(['/user']);
     }
   }
 
@@ -39,15 +46,18 @@ export class EditLearnSetPage implements OnInit {
       .from('learn_sets')
       .select('*')
       .eq('id', id)
+      .eq('user_id', this.userId) // Nur Datensätze des aktuellen Benutzers laden
       .single();
 
-    if (!error) {
+    if (!error && data) {
       this.title = data.title;
       this.description = data.description;
       this.imageUrl = data.image_url;
       this.flashcards = typeof data.flashcards === 'string'
         ? JSON.parse(data.flashcards)
         : data.flashcards || [];
+    } else {
+      console.error('Error loading learn set:', error);
     }
   }
 
@@ -84,7 +94,8 @@ export class EditLearnSetPage implements OnInit {
       await this.supabaseService.getClient()
         .from('learn_sets')
         .update({image_url: this.imageUrl})
-        .eq('id', this.learnSetId);
+        .eq('id', this.learnSetId)
+        .eq('user_id', this.userId);
     }
 
     this.cdr.detectChanges();
@@ -104,7 +115,8 @@ export class EditLearnSetPage implements OnInit {
           image_url: this.imageUrl,
           flashcards: JSON.stringify(this.flashcards),
         })
-        .eq('id', this.learnSetId);
+        .eq('id', this.learnSetId)
+        .eq('user_id', this.userId);
 
       if (!error) {
         const {data: updatedData} = await this.supabaseService.getClient()
@@ -116,6 +128,8 @@ export class EditLearnSetPage implements OnInit {
         if (updatedData) {
           this.router.navigate(['/learn-sets'], {state: {updatedLearnSet: updatedData}});
         }
+      } else {
+        console.error('Error updating learn set:', error);
       }
     }
   }
@@ -126,7 +140,11 @@ export class EditLearnSetPage implements OnInit {
     const {error} = await this.supabaseService.getClient()
       .from('learn_sets')
       .update({flashcards: JSON.stringify(this.flashcards)})
-      .eq('id', this.learnSetId);
+      .eq('id', this.learnSetId)
+      .eq('user_id', this.userId);
 
+    if (error) {
+      console.error('Error updating flashcards:', error);
+    }
   }
 }
