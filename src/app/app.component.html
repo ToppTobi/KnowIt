@@ -1,5 +1,6 @@
-<ion-menu side="start" content-id="main-content">
-  <div class="sidebar">
+<ion-menu side="start" content-id="main-content" (ionDidOpen)="toggleMenu(true)" (ionDidClose)="toggleMenu(false)">
+
+<div class="sidebar">
 
     <div class="sidebar-header">
       <h2>Navigation</h2>

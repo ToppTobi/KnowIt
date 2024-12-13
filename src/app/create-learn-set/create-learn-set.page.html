@@ -53,6 +53,10 @@
     <div class="form-group">
       <ion-label class="label">Cards</ion-label>
       <div *ngFor="let card of flashcards; let i = index" class="flashcard">
+        <div class="delete-flashcard-button-container">
+          <img class="header-icon" src="assets/icon/delete.png" alt="Custom Icon" width="24" height="24" (click)="deleteFlashcard(i)"/>
+        </div>
+        <div class="card-header">Card {{ i + 1 }}</div>
         <div>
           <ion-label position="stacked">Question:</ion-label>
           <textarea class="textarea" [(ngModel)]="card.question" placeholder="Question"></textarea>

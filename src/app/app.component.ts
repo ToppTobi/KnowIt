@@ -32,15 +32,12 @@ export class AppComponent {
   }
 
   async initializeApp() {
-    // Hide the splash (you should do this on app launch)
     await SplashScreen.hide();
 
-    // Show the splash for an indefinite amount of time
     await SplashScreen.show({
       autoHide: false,
     });
 
-    // Show the splash for two seconds and then automatically hide it
     setTimeout(async () => {
       await SplashScreen.show({
         showDuration: 2000,
@@ -55,4 +52,19 @@ export class AppComponent {
     this.isDarkMode = !this.isDarkMode;
     document.body.style.filter = this.isDarkMode ? 'invert(1)' : 'invert(0)';
   }
+  toggleMenu(open: boolean) {
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      if (open) {
+        mainContent.setAttribute('inert', '');
+      } else {
+        mainContent.removeAttribute('inert');
+      }
+    }
+  }
+
+
+
+
+
 }
