@@ -53,3 +53,20 @@ ion-menu {
     background-color: rgba(255, 255, 255, 0.1); /* Leichte Hover-Farbe */
   }
 }
+
+.dark-mode-container {
+  text-align: center;
+  display: flex;
+  padding-top: 50px;
+}
+.dark-mode-toggle{
+  font-size: 16px;
+  padding: 5px;
+  background-color: rgba(184,205,214,0.5);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+}

@@ -39,10 +39,7 @@ export class AppComponent {
     });
 
     setTimeout(async () => {
-      await SplashScreen.show({
-        showDuration: 2000,
-        autoHide: true,
-      });
+      await SplashScreen.hide();
     }, 2000);
   }
 
