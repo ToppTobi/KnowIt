@@ -8,8 +8,6 @@
 - [Erste Schritte](#erste-schritte)
 - [Skripte](#skripte)
 - [Projektstruktur](#projektstruktur)
-- [Mitwirken](#mitwirken)
-- [Lizenz](#lizenz)
 
 ---
 
