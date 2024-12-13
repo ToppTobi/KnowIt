@@ -96,22 +96,5 @@ Folgende Skripte stehen im Projekt zur Verfügung:
 
 ---
 
-## Mitwirken
-
-Beiträge sind willkommen! Bitte folge diesen Schritten, um mitzuwirken:
-
-1. Repository forken.
-2. Einen neuen Branch für dein Feature oder deinen Bugfix erstellen.
-3. Änderungen committen und zum Fork pushen.
-4. Einen Pull-Request erstellen und die Änderungen beschreiben.
-
----
-
-## Lizenz
-
-Dieses Projekt steht unter der MIT-Lizenz. Weitere Informationen findest du in der Datei `LICENSE`.
-
----
-
 Viel Spaß beim Lernen mit **KnowIt**!
 
